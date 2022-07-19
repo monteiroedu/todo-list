@@ -1,11 +1,17 @@
 import { Container, List, speedDialIconClasses } from "@mui/material";  
 import React, { useState } from "react";
+import { useEffect } from "react";
 import Form from "../components/Form";
 import ListItens from "../components/ListItens";
-import {tarefasApi} from "../utils/tarefas.api";
+import { tarefasApi } from "../utils/tarefas.api";
  
 
 export default function Home() {
+  const findAllTodo = async() => {
+ const toDoAll = await tarefasApi.getAllTarefas()
+
+    setTodos(toDoAll)
+  }
     const [todos, setTodos] = useState([]);
     
     const addTodo = (todo) => {
@@ -29,33 +35,8 @@ export default function Home() {
         
         setTodos(tarefas);
      }
-
-    // const [todo, setTodo = useState([]);
-    // const [envio, setEnvio] = useState();
-    // const [search, setSearch] = useState("");
-    // const [modaIsOpen, setModalIsOpen] = useState(false);
-    // const [uniqueTarefas, setUniqueTarefas] = useState({
-    //   id: 0,
-    //   tarefa: "",
-    //       });
-  
-    //       async function findTarefasId(id) {
-    //         openModal();
-    //         const tarefasById = await tarefasApi.getTarefasById(id);
-    //         console.log(tarefasById);
-    //         setUniqueTarefas(tarefasById);
-    //       }
-        
-    //       async function getTarefas() {
-    //         const allTarefas = await tarefasApi.getAllTarefas();
-    //         setTarefas(allTarefas);
-    //         setEnvio(false);
-    //       }
-    //       useEffect(() => {
-    //         getTarefas();
-    //       }, [envio]);
-
-  return (
+    useEffect(()=>{findAllTodo()}, []) 
+     return (
     <Container maxWidth="xs" style={{ marginTop: "1em" }}>
       <Form addTodo={addTodo} /> 
       <List sx={{ marginTop: "1em" }}>

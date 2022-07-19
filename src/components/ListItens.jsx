@@ -36,7 +36,7 @@ const dialogHandler = () => {
         <Checkbox
           edge="start" tabIndex={-1} disableRipple />
       </ListItemIcon>
-      <ListItemText primary={todo.text} onClick={() => setOpenDialog(true)} />
+      <ListItemText primary={todo.tarefa} onClick={() => setOpenDialog(true)} />
     </ListItemButton>
   </ListItem>
   </Paper>

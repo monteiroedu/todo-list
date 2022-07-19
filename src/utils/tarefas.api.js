@@ -1,4 +1,4 @@
-const defaultUrl = "http://localhost:8000/tarefas";
+const defaultUrl = "http://localhost:5000/tarefas";
 
 export const tarefasApi = {
     getAllTarefas: async () => {
@@ -7,7 +7,7 @@ export const tarefasApi = {
       return result;
     },
     createTarefas: async (tarefas) => {
-      const req = await fetch("http://localhost:8000/tarefas", {
+      const req = await fetch("http://localhost:5000/tarefas", {
         method: "POST",
         body: JSON.stringify(tarefas),
         headers: new Headers({ "Content-Type": "application/json" }),
@@ -20,4 +20,4 @@ export const tarefasApi = {
     const result = await req.json();
     return result;
   },
-};
+  };
